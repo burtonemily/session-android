@@ -45,6 +45,7 @@
             android:background="@color/pn_option_border">
 
             <TextView
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/medium_font_size"
