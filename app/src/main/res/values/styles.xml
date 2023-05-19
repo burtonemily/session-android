@@ -112,7 +112,7 @@
 
     <style name="Widget.Session.Button.Common.DestructiveOutline">
         <item name="android:background">@drawable/destructive_outline_button_medium_background</item>
-        <item name="android:textColor">@color/destructive</item>
+        <item name="android:textColor">@color/button_destructive</item>
         <item name="android:drawableTint">?android:textColorPrimary</item>
     </style>
 
@@ -125,7 +125,7 @@
     <style name="Widget.Session.Button.Dialog.UnimportantText">
         <item name="android:background">@drawable/unimportant_dialog_text_button_background</item>
     </style>
-    
+
     <style name="Widget.Session.Button.Dialog.DestructiveText">
         <item name="android:background">@drawable/destructive_dialog_text_button_background</item>
         <item name="android:textColor">@color/destructive</item>
