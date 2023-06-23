@@ -40,9 +40,6 @@
     <string name="AccessibilityId_conversation_list_item">Conversation list item</string>
     <string name="AccessibilityId_details">Details</string>
     <string name="AccessibilityId_pin">Pin</string>
-    <!--Settings Page -->
-    <string name="AccessibilityId_blocked_contacts">Blocked contacts</string>
-
     <!--Message requests-->
     <string name="AccessibilityId_message_request_banner">Message requests banner</string>
     <string name="AccessibilityId_message_request">Message request</string>
@@ -96,7 +93,6 @@
     <string name="AccessibilityId_continue_group_creation">Continue group creation</string>
     <string name="AccessibilityId_contact">Contact</string>
     <string name="AccessibilityId_select_contact">Select contact</string>
-
     <!--Conversation screen -->
     <string name="AccessibilityId_message_input">Message input box</string>
     <string name="AccessibilityId_microphone_button">New voice message</string>
@@ -111,6 +107,7 @@
     <string name="AccessibilityId_dont_download_media">Don\'t download media</string>
     <!-- Conversation View-->
     <string name="AccessibilityId_message_sent_status_tick">Message sent status: Sent</string>
+    <string name="AccessibilityId_message_status_read">Message status: Read</string>
     <string name="AccessibilityId_message_sent_status_pending">Message sent status pending</string>
     <string name="AccessibilityId_message_request_config_message">Message request has been accepted</string>
     <string name="AccessibilityId_message_body">Message Body</string>
@@ -143,11 +140,20 @@
     <string name="AccessibilityId_invite_friend">Invite a friend</string>
     <string name="AccessibilityId_help">Help</string>
     <string name="AccessibilityId_clear_data">Clear data</string>
+    <string name="AccessibilityId_blocked_contacts">Blocked contacts</string>
     <!--    Recovery Phrase Dialog-->
     <string name="AccessibilityId_cancel_button">Cancel</string>
     <!--    Link preview Dialog-->
     <string name="AccessibilityId_enable_link_preview_button">Enable</string>
     <string name="AccessibilityId_cancel_link_preview_button">Cancel</string>
+    <!--    Privacy settings screen -->
+    <string name="AccessibilityId_read_receipts">Enable read receipts</string>
+    <string name="AccessibilityId_typing_indicators">Enable typing indicators</string>
+    <string name="AccessibilityId_Voice_and_video_calls">Enable voice and video calls</string>
+    <string name="AccessibilityId_enable_link_previews">Enable link previews</string>
+
+
+
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">New message</string>
     <!-- AlbumThumbnailView -->

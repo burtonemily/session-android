@@ -26,7 +26,8 @@
             android:defaultValue="false"
             android:key="pref_read_receipts"
             android:title="@string/preferences__read_receipts"
-            android:summary="@string/preferences__read_receipts_summary"/>
+            android:summary="@string/preferences__read_receipts_summary"
+            android:contentDescription="@string/AccessibilityId_read_receipts" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/preferences__typing_indicators">
