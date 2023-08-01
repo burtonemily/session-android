@@ -1,0 +1,8 @@
+create /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86/libsession/libsession-util.a
+addlib /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86/libsession/src/libsession-util-crypto.a
+addlib /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86/libsession/src/libsession-util-config.a
+addlib /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86/libsession/src/libsession-util-version.a
+addlib /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86/libsession/external/libsodium-internal/libsodium-internal.a
+addlib /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86/libsession/external/zstd/build/cmake/lib/libzstd.a
+save
+end

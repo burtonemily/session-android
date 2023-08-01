@@ -1,0 +1,62 @@
+Checking whether the ASM compiler is GNU using "--version" did not match "(GNU assembler)|(GCC)|(Free Software Foundation)":
+Android (7714059, based on r416183c1) clang version 12.0.8 (https://android.googlesource.com/toolchain/llvm-project c935d99d7cf2016289302412d708641d52d2f7ee)
+Target: x86_64-apple-darwin22.3.0
+Thread model: posix
+InstalledDir: /Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin
+Performing C SOURCE FILE Test HAVE_AMD64_ASM failed with the following output:
+Change Dir: /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Users/emilyburton/Library/Android/sdk/cmake/3.22.1/bin/ninja cmTC_c20c8 && [1/2] Building C object CMakeFiles/cmTC_c20c8.dir/src.c.o
+FAILED: CMakeFiles/cmTC_c20c8.dir/src.c.o 
+/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=x86_64-none-linux-android23 --sysroot=/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DHAVE_AMD64_ASM -DNATIVE_LITTLE_ENDIAN  -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -fexceptions  -O2 -g -DNDEBUG -fPIE -MD -MT CMakeFiles/cmTC_c20c8.dir/src.c.o -MF CMakeFiles/cmTC_c20c8.dir/src.c.o.d -o CMakeFiles/cmTC_c20c8.dir/src.c.o -c /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/CMakeFiles/CMakeTmp/src.c
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/CMakeFiles/CMakeTmp/src.c:14:23: warning: missing terminating '"' character [-Winvalid-pp-token]
+__asm__ __volatile__ ("pxor %%xmm12, %%xmm6 
+                      ^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/CMakeFiles/CMakeTmp/src.c:14:23: error: expected string literal in 'asm'
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/CMakeFiles/CMakeTmp/src.c:15:1: warning: missing terminating '"' character [-Winvalid-pp-token]
+"
+^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/CMakeFiles/CMakeTmp/src.c:16:23: warning: missing terminating '"' character [-Winvalid-pp-token]
+                      "movb (%[i]), %[t] 
+                      ^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/CMakeFiles/CMakeTmp/src.c:17:1: warning: missing terminating '"' character [-Winvalid-pp-token]
+"
+^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/CMakeFiles/CMakeTmp/src.c:18:23: warning: missing terminating '"' character [-Winvalid-pp-token]
+                      "addb %[t], (%[o]) 
+                      ^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/CMakeFiles/CMakeTmp/src.c:19:1: warning: missing terminating '"' character [-Winvalid-pp-token]
+"
+^
+6 warnings and 1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int
+main (void)
+{
+
+#if defined(__amd64) || defined(__amd64__) || defined(__x86_64__)
+# if defined(__CYGWIN__) || defined(__MINGW32__) || defined(__MINGW64__) || defined(_WIN32) || defined(_WIN64)
+#  error Windows x86_64 calling conventions are not supported yet
+# endif
+/* neat */
+#else
+# error !x86_64
+#endif
+unsigned char i = 0, o = 0, t;
+__asm__ __volatile__ ("pxor %%xmm12, %%xmm6 
+"
+                      "movb (%[i]), %[t] 
+"
+                      "addb %[t], (%[o]) 
+"
+                      : [t] "=&r"(t)
+                      : [o] "D"(&o), [i] "S"(&i)
+                      : "memory", "flags", "cc");
+
+  ;
+  return 0;
+}
+

@@ -1,0 +1,206 @@
+Checking whether the ASM compiler is GNU using "--version" did not match "(GNU assembler)|(GCC)|(Free Software Foundation)":
+Android (7714059, based on r416183c1) clang version 12.0.8 (https://android.googlesource.com/toolchain/llvm-project c935d99d7cf2016289302412d708641d52d2f7ee)
+Target: x86_64-apple-darwin22.3.0
+Thread model: posix
+InstalledDir: /Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin
+Performing C SOURCE FILE Test HAVE_TI_MODE failed with the following output:
+Change Dir: /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Users/emilyburton/Library/Android/sdk/cmake/3.22.1/bin/ninja cmTC_d2454 && [1/2] Building C object CMakeFiles/cmTC_d2454.dir/src.c.o
+FAILED: CMakeFiles/cmTC_d2454.dir/src.c.o 
+/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=armv7-none-linux-androideabi23 --sysroot=/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DHAVE_TI_MODE -DNATIVE_LITTLE_ENDIAN  -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -fexceptions  -O2 -g -DNDEBUG -fPIE -MD -MT CMakeFiles/cmTC_d2454.dir/src.c.o -MF CMakeFiles/cmTC_d2454.dir/src.c.o.d -o CMakeFiles/cmTC_d2454.dir/src.c.o -c /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:5:3: error: clang does not properly handle the 128-bit type on 32-bit systems
+# error clang does not properly handle the 128-bit type on 32-bit systems
+  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+#if !defined(__clang__) && !defined(__GNUC__) && !defined(__SIZEOF_INT128__)
+# error mode(TI) is a gcc extension, and __int128 is not available
+#endif
+#if defined(__clang__) && !defined(__x86_64__) && !defined(__aarch64__)
+# error clang does not properly handle the 128-bit type on 32-bit systems
+#endif
+#ifndef NATIVE_LITTLE_ENDIAN
+# error libsodium currently expects a little endian CPU for the 128-bit type
+#endif
+#ifdef __EMSCRIPTEN__
+# error emscripten currently doesn't support some operations on integers larger than 64 bits
+#endif
+#include <stddef.h>
+#include <stdint.h>
+#if defined(__SIZEOF_INT128__)
+typedef unsigned __int128 uint128_t;
+#else
+typedef unsigned uint128_t __attribute__((mode(TI)));
+#endif
+void fcontract(uint128_t *t) {
+  *t += 0x8000000000000 - 1;
+  *t *= *t;
+  *t >>= 84;
+}
+
+int
+main (void)
+{
+
+(void) fcontract;
+
+  ;
+  return 0;
+}
+
+Performing C SOURCE FILE Test HAVE_CPUID failed with the following output:
+Change Dir: /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Users/emilyburton/Library/Android/sdk/cmake/3.22.1/bin/ninja cmTC_eeffe && [1/2] Building C object CMakeFiles/cmTC_eeffe.dir/src.c.o
+FAILED: CMakeFiles/cmTC_eeffe.dir/src.c.o 
+/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=armv7-none-linux-androideabi23 --sysroot=/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DHAVE_CPUID -DNATIVE_LITTLE_ENDIAN  -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -fexceptions  -O2 -g -DNDEBUG -fPIE -MD -MT CMakeFiles/cmTC_eeffe.dir/src.c.o -MF CMakeFiles/cmTC_eeffe.dir/src.c.o.d -o CMakeFiles/cmTC_eeffe.dir/src.c.o -c /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:7:23: error: invalid output constraint '=a' in asm
+                      "=a" (cpu_info[0]), "=&r" (cpu_info[1]),
+                      ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int
+main (void)
+{
+
+unsigned int cpu_info[4];
+__asm__ __volatile__ ("xchgl %%ebx, %k1; cpuid; xchgl %%ebx, %k1" :
+                      "=a" (cpu_info[0]), "=&r" (cpu_info[1]),
+                      "=c" (cpu_info[2]), "=d" (cpu_info[3]) :
+                      "0" (0U), "2" (0U));
+
+  ;
+  return 0;
+}
+
+Performing C SOURCE FILE Test HAVE_AVX_ASM failed with the following output:
+Change Dir: /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Users/emilyburton/Library/Android/sdk/cmake/3.22.1/bin/ninja cmTC_cfde1 && [1/2] Building C object CMakeFiles/cmTC_cfde1.dir/src.c.o
+FAILED: CMakeFiles/cmTC_cfde1.dir/src.c.o 
+/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=armv7-none-linux-androideabi23 --sysroot=/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DHAVE_AVX_ASM -DNATIVE_LITTLE_ENDIAN  -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -fexceptions  -O2 -g -DNDEBUG -fPIE -MD -MT CMakeFiles/cmTC_cfde1.dir/src.c.o -MF CMakeFiles/cmTC_cfde1.dir/src.c.o.d -o CMakeFiles/cmTC_cfde1.dir/src.c.o -c /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:11:3: error: !x86_64
+# error !x86_64
+  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int
+main (void)
+{
+
+#if defined(__amd64) || defined(__amd64__) || defined(__x86_64__)
+# if defined(__CYGWIN__) || defined(__MINGW32__) || defined(__MINGW64__) || defined(_WIN32) || defined(_WIN64)
+#  error Windows x86_64 calling conventions are not supported yet
+# endif
+/* neat */
+#else
+# error !x86_64
+#endif
+__asm__ __volatile__ ("vpunpcklqdq %xmm0,%xmm13,%xmm0");
+
+  ;
+  return 0;
+}
+
+Performing C SOURCE FILE Test HAVE_AMD64_ASM failed with the following output:
+Change Dir: /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Users/emilyburton/Library/Android/sdk/cmake/3.22.1/bin/ninja cmTC_469c7 && [1/2] Building C object CMakeFiles/cmTC_469c7.dir/src.c.o
+FAILED: CMakeFiles/cmTC_469c7.dir/src.c.o 
+/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=armv7-none-linux-androideabi23 --sysroot=/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DHAVE_AMD64_ASM -DNATIVE_LITTLE_ENDIAN  -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -fexceptions  -O2 -g -DNDEBUG -fPIE -MD -MT CMakeFiles/cmTC_469c7.dir/src.c.o -MF CMakeFiles/cmTC_469c7.dir/src.c.o.d -o CMakeFiles/cmTC_469c7.dir/src.c.o -c /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:11:3: error: !x86_64
+# error !x86_64
+  ^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:14:23: warning: missing terminating '"' character [-Winvalid-pp-token]
+__asm__ __volatile__ ("pxor %%xmm12, %%xmm6 
+                      ^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:14:23: error: expected string literal in 'asm'
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:15:1: warning: missing terminating '"' character [-Winvalid-pp-token]
+"
+^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:16:23: warning: missing terminating '"' character [-Winvalid-pp-token]
+                      "movb (%[i]), %[t] 
+                      ^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:17:1: warning: missing terminating '"' character [-Winvalid-pp-token]
+"
+^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:18:23: warning: missing terminating '"' character [-Winvalid-pp-token]
+                      "addb %[t], (%[o]) 
+                      ^
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:19:1: warning: missing terminating '"' character [-Winvalid-pp-token]
+"
+^
+6 warnings and 2 errors generated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int
+main (void)
+{
+
+#if defined(__amd64) || defined(__amd64__) || defined(__x86_64__)
+# if defined(__CYGWIN__) || defined(__MINGW32__) || defined(__MINGW64__) || defined(_WIN32) || defined(_WIN64)
+#  error Windows x86_64 calling conventions are not supported yet
+# endif
+/* neat */
+#else
+# error !x86_64
+#endif
+unsigned char i = 0, o = 0, t;
+__asm__ __volatile__ ("pxor %%xmm12, %%xmm6 
+"
+                      "movb (%[i]), %[t] 
+"
+                      "addb %[t], (%[o]) 
+"
+                      : [t] "=&r"(t)
+                      : [o] "D"(&o), [i] "S"(&i)
+                      : "memory", "flags", "cc");
+
+  ;
+  return 0;
+}
+
+Performing C SOURCE FILE Test HAVE_INLINE_ASM failed with the following output:
+Change Dir: /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Users/emilyburton/Library/Android/sdk/cmake/3.22.1/bin/ninja cmTC_2bea2 && [1/2] Building C object CMakeFiles/cmTC_2bea2.dir/src.c.o
+FAILED: CMakeFiles/cmTC_2bea2.dir/src.c.o 
+/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=armv7-none-linux-androideabi23 --sysroot=/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DHAVE_INLINE_ASM -DNATIVE_LITTLE_ENDIAN  -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -fexceptions  -O2 -g -DNDEBUG -fPIE -MD -MT CMakeFiles/cmTC_2bea2.dir/src.c.o -MF CMakeFiles/cmTC_2bea2.dir/src.c.o.d -o CMakeFiles/cmTC_2bea2.dir/src.c.o -c /Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c
+/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/armeabi-v7a/CMakeFiles/CMakeTmp/src.c:11:3: error: !x86_64
+# error !x86_64
+  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int
+main (void)
+{
+
+#if defined(__amd64) || defined(__amd64__) || defined(__x86_64__)
+# if defined(__CYGWIN__) || defined(__MINGW32__) || defined(__MINGW64__) || defined(_WIN32) || defined(_WIN64)
+#  error Windows x86_64 calling conventions are not supported yet
+# endif
+/* neat */
+#else
+# error !x86_64
+#endif
+__asm__ __volatile__ ("vpunpcklqdq %xmm0,%xmm13,%xmm0");
+
+  ;
+  return 0;
+}
+

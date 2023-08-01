@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "libsession/external/oxen-encoding",
+		"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/oxen-encoding"
+	}
+}

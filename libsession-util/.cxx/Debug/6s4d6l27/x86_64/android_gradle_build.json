@@ -1,0 +1,92 @@
+{
+  "buildFiles": [
+    "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/CMakeLists.txt",
+    "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/CMakeLists.txt",
+    "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/libsodium-internal/CMakeLists.txt",
+    "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/oxen-encoding/CMakeLists.txt",
+    "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/CMakeLists.txt",
+    "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/lib/CMakeLists.txt",
+    "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/src/CMakeLists.txt",
+    "/Users/emilyburton/Documents/session-android/libsession-util/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/emilyburton/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/emilyburton/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "clean-all::@3485f8c8df200035a86c": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "clean-all"
+    },
+    "config::@f0f8961895e3a9848281": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "config",
+      "output": "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/libsession/src/libsession-util-config.a"
+    },
+    "crypto::@f0f8961895e3a9848281": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "crypto",
+      "output": "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/libsession/src/libsession-util-crypto.a"
+    },
+    "libzstd_static::@56032ef77510c0f6ff6a": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "libzstd_static",
+      "output": "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/libsession/external/zstd/build/cmake/lib/libzstd.a"
+    },
+    "session-util::@8a13bcf4cf551c640bfb": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "session-util"
+    },
+    "session_util::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "session_util",
+      "output": "/Users/emilyburton/Documents/session-android/libsession-util/build/intermediates/cxx/Debug/6s4d6l27/obj/x86_64/libsession_util.so",
+      "runtimeFiles": []
+    },
+    "sodium-internal::@1114af94d769cbc74a91": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "sodium-internal",
+      "output": "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/libsession/external/libsodium-internal/libsodium-internal.a"
+    },
+    "uninstall::@56032ef77510c0f6ff6a": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "uninstall"
+    },
+    "version::@f0f8961895e3a9848281": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "version",
+      "output": "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86_64/libsession/src/libsession-util-version.a"
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/Users/emilyburton/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

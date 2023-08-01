@@ -1,0 +1,79 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/lib/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 160,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 164,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 170,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib/pkgconfig",
+			"paths" : 
+			[
+				"/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/arm64-v8a/libsession/external/zstd/build/cmake/lib/libzstd.pc"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/../../lib/zstd.h",
+				"/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/../../lib/zdict.h",
+				"/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/../../lib/zstd_errors.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libsession/external/zstd/build/cmake/lib/libzstd.a"
+			],
+			"targetId" : "libzstd_static::@56032ef77510c0f6ff6a",
+			"targetIndex" : 3,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "libsession/external/zstd/build/cmake/lib",
+		"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/lib"
+	}
+}

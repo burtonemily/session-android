@@ -1,0 +1,316 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "libsession",
+					"childIndexes" : 
+					[
+						2,
+						7
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-libsession-Release-f031c8b984f1f780eb2f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "libsession/external",
+					"childIndexes" : 
+					[
+						3,
+						4,
+						5
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-libsession.external-Release-8296af04bd8cf38d4cc5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external"
+				},
+				{
+					"build" : "libsession/external/oxen-encoding",
+					"jsonFile" : "directory-libsession.external.oxen-encoding-Release-420668d8a05a50f63406.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/oxen-encoding"
+				},
+				{
+					"build" : "libsession/external/libsodium-internal",
+					"jsonFile" : "directory-libsession.external.libsodium-internal-Release-0d65ed402a76e6f83cea.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/libsodium-internal",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "libsession/external/zstd/build/cmake",
+					"childIndexes" : 
+					[
+						6
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-libsession.external.zstd.build.cmake-Release-9d8597304e39446b954b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 4,
+					"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "libsession/external/zstd/build/cmake/lib",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-libsession.external.zstd.build.cmake.lib-Release-63ee191040f8e5f1e6a3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 5,
+					"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/lib",
+					"targetIndexes" : 
+					[
+						3,
+						7
+					]
+				},
+				{
+					"build" : "libsession/src",
+					"jsonFile" : "directory-libsession.src-Release-0d1cc423f43b293d8b12.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/src",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						8
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "session_util",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						7
+					],
+					"name" : "libsession-util",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						4,
+						8
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "oxenc",
+					"parentIndex" : 1
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "libsodium-internal",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						5
+					],
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "zstd",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "libzstd",
+					"parentIndex" : 4,
+					"targetIndexes" : 
+					[
+						3,
+						7
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 5,
+					"id" : "clean-all::@3485f8c8df200035a86c",
+					"jsonFile" : "target-clean-all-Release-86399d97a6434dedf2cb.json",
+					"name" : "clean-all",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "config::@f0f8961895e3a9848281",
+					"jsonFile" : "target-config-Release-fbbbc73ebb92b7c669b9.json",
+					"name" : "config",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "crypto::@f0f8961895e3a9848281",
+					"jsonFile" : "target-crypto-Release-9550a1c36c8d37c4b9a6.json",
+					"name" : "crypto",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "libzstd_static::@56032ef77510c0f6ff6a",
+					"jsonFile" : "target-libzstd_static-Release-0aaba67b7532936963de.json",
+					"name" : "libzstd_static",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "session-util::@8a13bcf4cf551c640bfb",
+					"jsonFile" : "target-session-util-Release-5302145a0962b63670b5.json",
+					"name" : "session-util",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "session_util::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-session_util-Release-6a44192938b6d8644db0.json",
+					"name" : "session_util",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "sodium-internal::@1114af94d769cbc74a91",
+					"jsonFile" : "target-sodium-internal-Release-a26f1547cc70cdcb762e.json",
+					"name" : "sodium-internal",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "uninstall::@56032ef77510c0f6ff6a",
+					"jsonFile" : "target-uninstall-Release-d533069707b30e056bdd.json",
+					"name" : "uninstall",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "version::@f0f8961895e3a9848281",
+					"jsonFile" : "target-version-Release-45894e1e3e803753db61.json",
+					"name" : "version",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/x86",
+		"source" : "/Users/emilyburton/Documents/session-android/libsession-util/src/main/cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
