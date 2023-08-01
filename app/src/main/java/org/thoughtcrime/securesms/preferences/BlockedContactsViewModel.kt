@@ -7,10 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.cash.copper.flow.observeQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collect
@@ -23,7 +21,6 @@ import network.loki.messenger.R
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.Storage
-import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.util.adapter.SelectableItem
 import javax.inject.Inject
 
@@ -63,13 +60,9 @@ class BlockedContactsViewModel @Inject constructor(private val storage: Storage)
         return _state
     }
 
-    fun unblock(context: Context) {
+    fun unblock() {
         storage.unblock(state.selectedItems)
         _state.value = state.copy(selectedItems = emptySet())
-        // TODO: Remove in UserConfig branch
-        GlobalScope.launch(Dispatchers.IO) {
-            ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(context)
-        }
     }
 
     fun select(selectedItem: Recipient, isSelected: Boolean) {
