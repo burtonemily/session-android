@@ -1,0 +1,99 @@
+{
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target",
+			"combine_archives"
+		],
+		"files" : 
+		[
+			"/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/cmake/combine_archives.cmake",
+			"/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 100,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 27,
+				"parent" : 1
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "sodium-internal::@1114af94d769cbc74a91"
+		},
+		{
+			"id" : "libzstd_static::@56032ef77510c0f6ff6a"
+		},
+		{
+			"id" : "crypto::@f0f8961895e3a9848281"
+		},
+		{
+			"id" : "config::@f0f8961895e3a9848281"
+		},
+		{
+			"id" : "version::@f0f8961895e3a9848281"
+		}
+	],
+	"id" : "session-util::@8a13bcf4cf551c640bfb",
+	"name" : "session-util",
+	"paths" : 
+	{
+		"build" : "libsession",
+		"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/arm64-v8a/libsession/CMakeFiles/session-util",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/arm64-v8a/libsession/CMakeFiles/session-util.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/arm64-v8a/libsession/libsession-util.a.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

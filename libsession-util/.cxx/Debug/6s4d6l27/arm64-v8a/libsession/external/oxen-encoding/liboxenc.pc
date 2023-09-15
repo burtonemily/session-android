@@ -1,0 +1,9 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+includedir=/usr/local/include
+
+Name: liboxenc
+Description: Base 16/32/64 and Bittorrent Encoding/Decoding Header Only Library
+Version: 1.0.6
+Libs:
+Cflags: -I${includedir}

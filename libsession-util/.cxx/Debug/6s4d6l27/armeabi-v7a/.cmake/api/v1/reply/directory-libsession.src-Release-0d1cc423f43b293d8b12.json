@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "libsession/src",
+		"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/src"
+	}
+}

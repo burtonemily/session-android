@@ -1,0 +1,68 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 200,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 205,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/zstd",
+			"exportName" : "zstdExports",
+			"exportTargets" : 
+			[
+				{
+					"id" : "libzstd_static::@56032ef77510c0f6ff6a",
+					"index" : 3
+				}
+			],
+			"paths" : 
+			[
+				"libsession/external/zstd/build/cmake/CMakeFiles/Export/lib/cmake/zstd/zstdTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/zstd",
+			"paths" : 
+			[
+				"/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake/zstdConfig.cmake",
+				"/Users/emilyburton/Documents/session-android/libsession-util/.cxx/Debug/6s4d6l27/arm64-v8a/libsession/external/zstd/build/cmake/zstdConfigVersion.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "libsession/external/zstd/build/cmake",
+		"source" : "/Users/emilyburton/Documents/session-android/libsession-util/libsession-util/external/zstd/build/cmake"
+	}
+}
