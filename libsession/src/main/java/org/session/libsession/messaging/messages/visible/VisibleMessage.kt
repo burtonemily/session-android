@@ -11,20 +11,23 @@ import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.Log
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 
-class VisibleMessage : Message()  {
-    /** In the case of a sync message, the public key of the person the message was targeted at.
-     *
-     * **Note:** `nil` if this isn't a sync message.
-     */
-    var syncTarget: String? = null
-    var text: String? = null
-    val attachmentIDs: MutableList<Long> = mutableListOf()
-    var quote: Quote? = null
-    var linkPreview: LinkPreview? = null
-    var profile: Profile? = null
-    var openGroupInvitation: OpenGroupInvitation? = null
-    var reaction: Reaction? = null
-    var hasMention: Boolean = false
+/**
+ * @param syncTarget In the case of a sync message, the public key of the person the message was targeted at.
+ *
+ * **Note:** `nil` if this isn't a sync message.
+ */
+class VisibleMessage(
+    var syncTarget: String? = null,
+    var text: String? = null,
+    val attachmentIDs: MutableList<Long> = mutableListOf(),
+    var quote: Quote? = null,
+    var linkPreview: LinkPreview? = null,
+    var profile: Profile? = null,
+    var openGroupInvitation: OpenGroupInvitation? = null,
+    var reaction: Reaction? = null,
+    var hasMention: Boolean = false,
+    var blocksMessageRequests: Boolean = false
+) : Message()  {
 
     override val isSelfSendValid: Boolean = true
 
@@ -72,6 +75,9 @@ class VisibleMessage : Message()  {
                 val reaction = Reaction.fromProto(reactionProto)
                 result.reaction = reaction
             }
+
+            result.blocksMessageRequests = with (dataMessage) { hasBlocksCommunityMessageRequests() && blocksCommunityMessageRequests }
+
             return result
         }
     }
@@ -139,6 +145,8 @@ class VisibleMessage : Message()  {
                 return null
             }
         }
+        // Community blocked message requests flag
+        dataMessage.blocksCommunityMessageRequests = blocksMessageRequests
         // Sync target
         if (syncTarget != null) {
             dataMessage.syncTarget = syncTarget

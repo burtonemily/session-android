@@ -62,13 +62,15 @@ public class RecipientDatabase extends Database {
   private static final String UNIDENTIFIED_ACCESS_MODE = "unidentified_access_mode";
   private static final String FORCE_SMS_SELECTION      = "force_sms_selection";
   private static final String NOTIFY_TYPE              = "notify_type"; // all, mentions only, none
+  private static final String WRAPPER_HASH             = "wrapper_hash";
+  private static final String BLOCKS_COMMUNITY_MESSAGE_REQUESTS = "blocks_community_message_requests";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       BLOCK, APPROVED, APPROVED_ME, NOTIFICATION, CALL_RINGTONE, VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
       PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_CONTACT_URI,
       SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL,
       UNIDENTIFIED_ACCESS_MODE,
-      FORCE_SMS_SELECTION, NOTIFY_TYPE,
+      FORCE_SMS_SELECTION, NOTIFY_TYPE, WRAPPER_HASH, BLOCKS_COMMUNITY_MESSAGE_REQUESTS
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -136,6 +138,16 @@ public class RecipientDatabase extends Database {
             "OR "+ADDRESS+" IN (SELECT "+GroupDatabase.TABLE_NAME+"."+GroupDatabase.ADMINS+" FROM "+GroupDatabase.TABLE_NAME+")))";
   }
 
+  public static String getAddWrapperHash() {
+    return "ALTER TABLE "+TABLE_NAME+" "+
+            "ADD COLUMN "+WRAPPER_HASH+" TEXT DEFAULT NULL;";
+  }
+
+  public static String getAddBlocksCommunityMessageRequests() {
+    return "ALTER TABLE "+TABLE_NAME+" "+
+            "ADD COLUMN "+BLOCKS_COMMUNITY_MESSAGE_REQUESTS+" INT DEFAULT 0;";
+  }
+
   public static final int NOTIFY_TYPE_ALL = 0;
   public static final int NOTIFY_TYPE_MENTIONS = 1;
   public static final int NOTIFY_TYPE_NONE = 2;
@@ -154,18 +166,14 @@ public class RecipientDatabase extends Database {
 
   public Optional<RecipientSettings> getRecipientSettings(@NonNull Address address) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor         cursor   = null;
 
-    try {
-      cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[] {address.serialize()}, null, null, null);
+    try (Cursor cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[]{address.serialize()}, null, null, null)) {
 
       if (cursor != null && cursor.moveToNext()) {
         return getRecipientSettings(cursor);
       }
 
       return Optional.absent();
-    } finally {
-      if (cursor != null) cursor.close();
     }
   }
 
@@ -194,6 +202,8 @@ public class RecipientDatabase extends Database {
     String  notificationChannel    = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION_CHANNEL));
     int     unidentifiedAccessMode = cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED_ACCESS_MODE));
     boolean forceSmsSelection      = cursor.getInt(cursor.getColumnIndexOrThrow(FORCE_SMS_SELECTION))  == 1;
+    String  wrapperHash            = cursor.getString(cursor.getColumnIndexOrThrow(WRAPPER_HASH));
+    boolean blocksCommunityMessageRequests = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCKS_COMMUNITY_MESSAGE_REQUESTS)) == 1;
 
     MaterialColor color;
     byte[] profileKey = null;
@@ -225,7 +235,7 @@ public class RecipientDatabase extends Database {
                                              systemPhoneLabel, systemContactUri,
                                              signalProfileName, signalProfileAvatar, profileSharing,
                                              notificationChannel, Recipient.UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
-                                             forceSmsSelection));
+                                             forceSmsSelection, wrapperHash, blocksCommunityMessageRequests));
   }
 
   public void setColor(@NonNull Recipient recipient, @NonNull MaterialColor color) {
@@ -252,6 +262,24 @@ public class RecipientDatabase extends Database {
     notifyRecipientListeners();
   }
 
+  public boolean getApproved(@NonNull Address address) {
+    SQLiteDatabase db = getReadableDatabase();
+    try (Cursor cursor = db.query(TABLE_NAME, new String[]{APPROVED}, ADDRESS + " = ?", new String[]{address.serialize()}, null, null, null)) {
+      if (cursor != null && cursor.moveToNext()) {
+        return cursor.getInt(cursor.getColumnIndexOrThrow(APPROVED)) == 1;
+      }
+    }
+    return false;
+  }
+
+  public void setRecipientHash(@NonNull Recipient recipient, String recipientHash) {
+    ContentValues values = new ContentValues();
+    values.put(WRAPPER_HASH, recipientHash);
+    updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setWrapperHash(recipientHash);
+    notifyRecipientListeners();
+  }
+
   public void setApproved(@NonNull Recipient recipient, boolean approved) {
     ContentValues values = new ContentValues();
     values.put(APPROVED, approved ? 1 : 0);
@@ -268,15 +296,7 @@ public class RecipientDatabase extends Database {
     notifyRecipientListeners();
   }
 
-  public void setBlocked(@NonNull Recipient recipient, boolean blocked) {
-    ContentValues values = new ContentValues();
-    values.put(BLOCK, blocked ? 1 : 0);
-    updateOrInsert(recipient.getAddress(), values);
-    recipient.resolve().setBlocked(blocked);
-    notifyRecipientListeners();
-  }
-
-  public void setBlocked(@NonNull List<Recipient> recipients, boolean blocked) {
+  public void setBlocked(@NonNull Iterable<Recipient> recipients, boolean blocked) {
     SQLiteDatabase db = getWritableDatabase();
     db.beginTransaction();
     try {
@@ -379,6 +399,14 @@ public class RecipientDatabase extends Database {
     contentValues.put(REGISTERED, registeredState.getId());
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.setRegistered(registeredState);
+    notifyRecipientListeners();
+  }
+
+  public void setBlocksCommunityMessageRequests(@NonNull Recipient recipient, boolean isBlocked) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(BLOCKS_COMMUNITY_MESSAGE_REQUESTS, isBlocked ? 1 : 0);
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.resolve().setBlocksCommunityMessageRequests(isBlocked);
     notifyRecipientListeners();
   }
 

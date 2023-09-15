@@ -31,7 +31,10 @@ class ConversationViewModel(
     private val storage: Storage
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(ConversationUiState())
+    val showSendAfterApprovalText: Boolean
+        get() = recipient?.run { isContactRecipient && !isLocalNumber && !hasApprovedMe() } ?: false
+
+    private val _uiState = MutableStateFlow(ConversationUiState(conversationExists = true))
     val uiState: StateFlow<ConversationUiState> = _uiState
 
     private var _recipient: RetrieveOnce<Recipient> = RetrieveOnce {
@@ -39,6 +42,15 @@ class ConversationViewModel(
     }
     val recipient: Recipient?
         get() = _recipient.value
+
+    val blindedRecipient: Recipient?
+        get() = _recipient.value?.let { recipient ->
+            when {
+                recipient.isOpenGroupOutboxRecipient -> recipient
+                recipient.isOpenGroupInboxRecipient -> repository.maybeGetBlindedRecipient(recipient)
+                else -> null
+            }
+        }
 
     private var _openGroup: RetrieveOnce<OpenGroup> = RetrieveOnce {
         storage.getOpenGroup(threadId)
@@ -54,6 +66,28 @@ class ConversationViewModel(
             SodiumUtilities.blindedKeyPair(openGroup!!.publicKey, edKeyPair)?.publicKey?.asBytes
                 ?.let { SessionId(IdPrefix.BLINDED, it) }?.hexString
         }
+
+    val isMessageRequestThread : Boolean
+        get() {
+            val recipient = recipient ?: return false
+            return !recipient.isLocalNumber && !recipient.isGroupRecipient && !recipient.isApproved
+        }
+
+    val canReactToMessages: Boolean
+        // allow reactions if the open group is null (normal conversations) or the open group's capabilities include reactions
+        get() = (openGroup == null || OpenGroupApi.Capability.REACTIONS.name.lowercase() in serverCapabilities)
+
+
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.recipientUpdateFlow(threadId)
+                .collect { recipient ->
+                    if (recipient == null && _uiState.value.conversationExists) {
+                        _uiState.update { it.copy(conversationExists = false) }
+                    }
+                }
+        }
+    }
 
     fun saveDraft(text: String) {
         GlobalScope.launch(Dispatchers.IO) {
@@ -180,6 +214,10 @@ class ConversationViewModel(
         _recipient.updateTo(repository.maybeGetRecipientForThreadId(threadId))
     }
 
+    fun hidesInputBar(): Boolean = openGroup?.canWrite != true &&
+                blindedRecipient?.blocksCommunityMessageRequests == true
+
+
     @dagger.assisted.AssistedFactory
     interface AssistedFactory {
         fun create(threadId: Long, edKeyPair: KeyPair?): Factory
@@ -203,7 +241,8 @@ data class UiMessage(val id: Long, val message: String)
 
 data class ConversationUiState(
     val uiMessages: List<UiMessage> = emptyList(),
-    val isMessageRequestAccepted: Boolean? = null
+    val isMessageRequestAccepted: Boolean? = null,
+    val conversationExists: Boolean
 )
 
 data class RetrieveOnce<T>(val retrieval: () -> T?) {
